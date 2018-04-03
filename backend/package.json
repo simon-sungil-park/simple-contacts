@@ -1,0 +1,11 @@
+{
+  "name": "simple-contacts-backend",
+  "version": "1.0.0",
+  "description": "Simple Contacts Application Backend",
+  "main": "index.js",
+  "author": "Simon Park",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
