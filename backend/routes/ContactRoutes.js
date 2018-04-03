@@ -1,7 +1,12 @@
-const express = require('express');
+const express = require('express'),
+      bodyParser = require('body-parser');
+
 const models = require('../models');
 
 const router = express.Router();
+
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
   models.getContacts()
