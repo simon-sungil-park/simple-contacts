@@ -51,4 +51,29 @@ router.post('/', (req, res) => {
     });
 })
 
+router.put('/:contactId', (req, res) => {
+
+  const contact = req.body;
+  contact.id = req.params.contactId;
+
+  models.updateContact(contact)
+    .then(savedContact => {
+      res.json(
+        {
+          isOk: true,
+          contact: savedContact
+        }
+      );
+    })
+    .catch(error => {
+      res.status(500).json(
+        {
+          isOk: false,
+          msg: 'Internal Error'
+        }
+      )
+    });
+})
+
+
 module.exports = router;

@@ -43,3 +43,31 @@ exports.addContact = (contact) => {
     });   
   })
 }
+
+exports.updateContact = (contact) => {
+
+  const contactId = contact.id;
+  const modifiedContact = {...contact};
+  
+  delete modifiedContact.id;
+  delete modifiedContact.created_at;
+
+  return new Promise( (resolve, reject) => {
+    Contacts.forge({id: contact.id})
+      .save(
+        {
+          ...modifiedContact,
+          updated_at: new Date()
+        }
+      )
+      .then(savedContact => {
+        return savedContact.fetch();
+      })
+      .then(savedContact => {
+        resolve(savedContact);
+      })
+      .catch(error => {
+        reject(error)
+      });   
+  })
+}
