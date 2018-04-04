@@ -28,4 +28,27 @@ router.get('/', (req, res) => {
     });
 })
 
+router.post('/', (req, res) => {
+
+  const contact = req.body;
+
+  models.addContact(contact)
+    .then(savedContact => {
+      res.json(
+        {
+          isOk: true,
+          contact: savedContact
+        }
+      );
+    })
+    .catch(error => {
+      res.status(500).json(
+        {
+          isOk: false,
+          msg: 'Internal Error'
+        }
+      )
+    });
+})
+
 module.exports = router;

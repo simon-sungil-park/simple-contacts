@@ -18,7 +18,28 @@ exports.getContacts = () => {
           })
         )
       })
-      .catch(err => reject(err));   
+      .catch(error => {
+        reject(error)
+      });   
   })
 }
 
+exports.addContact = (contact) => {
+  return new Promise( (resolve, reject) => {
+    Contacts.forge(
+      {
+        ...contact
+      }
+    )
+    .save()
+    .then(savedContact => {
+      return savedContact.fetch();
+    })
+    .then(savedContact => {
+      resolve(savedContact);
+    })
+    .catch(error => {
+      reject(error)
+    });   
+  })
+}
