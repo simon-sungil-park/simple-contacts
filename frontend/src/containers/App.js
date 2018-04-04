@@ -3,7 +3,7 @@ import { Route, Redirect, withRouter, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 import Navbar from '../components/Navbar';
-import ContactList from '../components/ContactList';
+import ContactListContainer from '../containers/ContactListContainer';
 import ContactDetail from '../components/ContactDetail';
 import ContactForm from '../components/ContactForm';
 
@@ -22,7 +22,7 @@ class App extends Component {
       <div>
         <Navbar />
         <Switch>
-          <Route exact path="/" render={()=><ContactList />} />
+          <Route exact path="/" render={()=><ContactListContainer />} />
           <Route path="/detail/:contactId" render={()=><ContactDetail />} />
           <Route path="/new" render={()=><ContactForm />} />
           <Route path="/edit/:contactId" render={()=><ContactForm />} />
