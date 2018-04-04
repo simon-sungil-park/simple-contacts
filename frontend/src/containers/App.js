@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { Route, Redirect, withRouter, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as contactsActions from '../modules/contacts';
 import Navbar from '../components/Navbar';
 import ContactList from '../components/ContactList';
 import ContactDetail from '../components/ContactDetail';
 import ContactForm from '../components/ContactForm';
 
+const mapDispatchToProps = (dispatch) => ({
+  fetchContacts: () => dispatch(contactsActions.fetchContacts())
+})
+
 class App extends Component {
+
+  componentDidMount() {
+    this.props.fetchContacts();
+  }
+
   render() {
     return (
       <div>
@@ -22,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(connect(null, mapDispatchToProps)(App));

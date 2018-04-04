@@ -30,7 +30,7 @@ export default handleActions(
       {
         ...state,
         pending: false,
-        data: action.payload.data
+        data: action.payload.data.contacts
       }
     ),
     [FETCH_CONTACTS_REJECTED]: (state, action) => (
