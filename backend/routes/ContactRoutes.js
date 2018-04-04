@@ -75,5 +75,27 @@ router.put('/:contactId', (req, res) => {
     });
 })
 
+router.delete('/:contactId', (req, res) => {
+
+  const { contactId } = req.params;
+
+  models.removeContact(contactId)
+    .then(result => {
+      res.json(
+        {
+          isOk: true
+        }
+      );
+    })
+    .catch(error => {
+      res.status(500).json(
+        {
+          isOk: false,
+          msg: 'Internal Error'
+        }
+      )
+    });
+})
+
 
 module.exports = router;

@@ -71,3 +71,16 @@ exports.updateContact = (contact) => {
       });   
   })
 }
+
+exports.removeContact = (contactId) => {
+  return new Promise( (resolve, reject) => {
+    Contacts.forge({id: contactId})
+      .destroy()
+      .then(result => {
+        resolve(true);
+      })
+      .catch(error => {
+        reject(error)
+      });   
+  })
+}
