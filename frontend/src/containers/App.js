@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 import Navbar from '../components/Navbar';
 import ContactListContainer from '../containers/ContactListContainer';
-import ContactDetail from '../components/ContactDetail';
+import ContactDetailContainer from '../containers/ContactDetailContainer';
 import ContactForm from '../components/ContactForm';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -23,7 +23,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" render={()=><ContactListContainer />} />
-          <Route path="/detail/:contactId" render={()=><ContactDetail />} />
+          <Route path="/detail/:contactId" render={()=><ContactDetailContainer />} />
           <Route path="/new" render={()=><ContactForm />} />
           <Route path="/edit/:contactId" render={()=><ContactForm />} />
           <Route render={()=><Redirect to="/" />} />
