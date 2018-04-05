@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContactListItem from './ContactListItem'
+import ContactListItemContainer from '../containers/ContactListItemContainer'
 
 const ContactList = ({ contacts }) => {
   return (
@@ -8,7 +8,7 @@ const ContactList = ({ contacts }) => {
       <div className="row">
         {
           contacts.map((contact, i) => (
-            <ContactListItem key={i} contact={contact} />
+            <ContactListItemContainer key={i} contact={contact} />
           ))
         }
       </div>
