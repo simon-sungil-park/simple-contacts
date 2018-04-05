@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ContactListItem from './ContactListItem'
 
 const ContactList = ({ contacts }) => {
   return (
     <div className="container">
-      {
-        contacts.map((contact, i) => (
-          <p key={i}>{`${contact.firstname} ${contact.lastname}`}</p>
-        ))
-      }
+      <div className="row">
+        {
+          contacts.map((contact, i) => (
+            <ContactListItem key={i} contact={contact} />
+          ))
+        }
+      </div>
     </div>
   )
 }
