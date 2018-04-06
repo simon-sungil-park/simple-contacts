@@ -16,13 +16,14 @@ class ContactListContatiner extends Component {
   render() {
     const { contacts, searchFilter } = this.props;
 
-    const filteredContacts = searchFilter === '' ? 
-      contacts :
-      contacts.filter(contact => (
-        `${contact.firstname} ${contact.lastname}`
-        .toLowerCase()
-        .includes(searchFilter.toLowerCase())
-      ))
+    const filteredContacts = 
+      searchFilter === '' ? 
+        contacts :
+        contacts.filter(contact => (
+          `${contact.firstname} ${contact.lastname}`
+          .toLowerCase()
+          .includes(searchFilter.toLowerCase())
+        ));
 
     return (
       <ContactList 
