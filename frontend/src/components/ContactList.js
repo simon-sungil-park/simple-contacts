@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContactListItemContainer from '../containers/ContactListItemContainer'
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, addContact }) => {
   return (
     <div className="container">
+      <div className="mb-3" >
+        <button className="btn btn-primary" onClick={()=>addContact()} >
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+
       <div className="row">
         {
           contacts.map((contact, i) => (
@@ -27,7 +33,8 @@ ContactList.propTypes = {
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  addContact: PropTypes.func.isRequired
 }
 
 export default ContactList;
