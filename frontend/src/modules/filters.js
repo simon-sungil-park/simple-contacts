@@ -1,11 +1,14 @@
 import { createAction, handleActions } from 'redux-actions';
 
 const SET_SEARCHFILTER = 'simple-contacts/SET_SEARCHFILTER';
+const SET_SORTORDER = 'simple-contacts/SET_SORTORDER';
 
 export const setSearchFilter = createAction(SET_SEARCHFILTER);
+export const setSortOrder = createAction(SET_SORTORDER);
 
 const initialState = {
-  searchFilter: ''
+  searchFilter: '',
+  sortOrder: 'first-name-a-z'
 };
 
 export default handleActions({
@@ -13,6 +16,12 @@ export default handleActions({
     {
       ...state,
       searchFilter: action.payload
+    }
+  ),
+  [SET_SORTORDER]: (state, action) => (
+    {
+      ...state,
+      sortOrder: action.payload
     }
   )
 }, initialState);
