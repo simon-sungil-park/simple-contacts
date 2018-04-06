@@ -4,7 +4,7 @@ import './ContactListItem.css';
 
 const ContactListItem = ({ contact, showDetail }) => {
   return (
-    <div className="col-sm-2 col-md-4">
+    <div className="col-sm-6 col-md-4">
       <div className="card contact" onClick={()=>showDetail(contact.id)}>
         <div className="card-body">
           <span className="firstname">{contact.firstname}</span>

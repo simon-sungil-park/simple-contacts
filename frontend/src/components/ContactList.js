@@ -8,15 +8,15 @@ const ContactList = ({ contacts, addContact }) => {
   return (
     <div className="container">
       <div className="row mb-5">
-        <div className="col" >
-          <button className="btn btn-outline-secondary" onClick={()=>addContact()} >
+        <div className="col-md-2 mb-3" >
+          <button className="btn btn-outline-secondary w-100" onClick={()=>addContact()} >
             <i className="fas fa-plus"></i> New
           </button>
         </div>
-        <div className="col">
+        <div className="col-sm-6 col-md-4 mb-3">
           <SearchBarContainer />
         </div>
-        <div className="col">
+        <div className="col-sm-6 offset-md-2 col-md-4 ">
           <OrderBarContainer />
         </div>
       </div>
