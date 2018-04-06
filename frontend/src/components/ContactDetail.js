@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ContactDetail.css'
 
-const ContactDetail = ({ contact, showList, deleteContact }) => {
+const ContactDetail = ({ contact, showList, editContact, deleteContact }) => {
   return (
     <div className="container">
       <div className="row">
@@ -10,7 +10,7 @@ const ContactDetail = ({ contact, showList, deleteContact }) => {
           <h2 className="name">{`${contact.firstname} ${contact.lastname}`}</h2>
         </div>
         <div>
-          <button className="btn btn-info mr-2">
+          <button className="btn btn-info mr-2" onClick={()=>editContact(contact.id)}>
             <i className="fas fa-edit"></i>
           </button>
           <button className="btn btn-danger" onClick={()=>deleteContact(contact.id)}>
@@ -56,6 +56,7 @@ ContactDetail.propTypes = {
     updated_at: PropTypes.string.isRequired
   }).isRequired,
   showList: PropTypes.func.isRequired,
+  editContact: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired
 }
 

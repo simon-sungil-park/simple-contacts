@@ -18,12 +18,15 @@ class ContactDetailContatiner extends Component {
     this.props.history.push('/');
   }
 
+  editContact = (contactId) => {
+    this.props.history.push(`/edit/${contactId}`);
+  }
+
   deleteContact = (contactId) => {
     this.props.deleteContact(contactId);
   }
 
   render() {
-
     const contactId = this.props.match.params.contactId;
     const contact = this.props.contacts.find(contact => String(contact.id) === contactId);
 
@@ -36,9 +39,12 @@ class ContactDetailContatiner extends Component {
     return <ContactDetail 
               contact={contact}
               showList={this.showList}
+              editContact={this.editContact}              
               deleteContact={this.deleteContact}
            />
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContactDetailContatiner));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ContactDetailContatiner)
+);
