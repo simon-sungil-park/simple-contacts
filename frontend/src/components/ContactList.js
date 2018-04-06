@@ -1,15 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContactListItemContainer from '../containers/ContactListItemContainer'
+import SearchBar from './SearchBar';
+import ContactListItemContainer from '../containers/ContactListItemContainer';
 
 const ContactList = ({ contacts, addContact }) => {
   return (
     <div className="container">
-      <div className="mb-3" >
-        <button className="btn btn-primary" onClick={()=>addContact()} >
-          <i className="fas fa-plus"></i>
-        </button>
+      <div className="row mb-3">
+        <div className="col" >
+          <button className="btn btn-primary" onClick={()=>addContact()} >
+            <i className="fas fa-plus"></i> New
+          </button>
+        </div>
+        <div className="col">
+          <SearchBar />
+        </div>
       </div>
+
 
       <div className="row">
         {

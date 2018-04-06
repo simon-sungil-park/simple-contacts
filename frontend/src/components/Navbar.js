@@ -2,7 +2,7 @@ import React from 'react';
 
 const style = {
   backgroundColor: '#218bb1',
-  marginBottom: '1em'
+  marginBottom: '3em'
 }
 
 const Navbar = () => {
