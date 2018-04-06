@@ -10,7 +10,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteContact: (contactId) => dispatch(contactsActions.deleteContact(contactId))
-})
+});
+
 class ContactDetailContatiner extends Component {
 
   showList = () => {
