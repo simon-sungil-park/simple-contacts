@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.data
+  contacts: state.contacts.data,
+  searchFilter: state.filters.searchFilter
 });
 
 class ContactListContatiner extends Component {
@@ -13,9 +14,19 @@ class ContactListContatiner extends Component {
   }
 
   render() {
+    const { contacts, searchFilter } = this.props;
+
+    const filteredContacts = searchFilter === '' ? 
+      contacts :
+      contacts.filter(contact => (
+        `${contact.firstname} ${contact.lastname}`
+        .toLowerCase()
+        .includes(searchFilter.toLowerCase())
+      ))
+
     return (
       <ContactList 
-        contacts={this.props.contacts}
+        contacts={filteredContacts}
         addContact={this.addContact}
       />
     )
