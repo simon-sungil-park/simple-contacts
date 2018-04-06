@@ -8,6 +8,11 @@ const mapStateToProps = (state) => ({
 });
 
 class ContactDetailContatiner extends Component {
+
+  showList = () => {
+    this.props.history.push('/');
+  }
+
   render() {
 
     const contactId = this.props.match.params.contactId;
@@ -18,7 +23,8 @@ class ContactDetailContatiner extends Component {
     }
 
     return <ContactDetail 
-              contact={contact} 
+              contact={contact}
+              showList={this.showList}
            />
   }
 }

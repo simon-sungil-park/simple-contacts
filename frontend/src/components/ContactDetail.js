@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ContactDetail.css'
 
-
-
-const ContactDetail = ({ contact }) => {
+const ContactDetail = ({ contact, showList }) => {
   return (
     <div className="container">
       <div className="row">
@@ -39,7 +37,7 @@ const ContactDetail = ({ contact }) => {
         </div>
       </div>
 
-      <button className="btn btn-secondary mt-5">
+      <button className="btn btn-secondary mt-5" onClick={()=>showList()} >
         Back
       </button>
 
@@ -56,7 +54,8 @@ ContactDetail.propTypes = {
     email: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
     updated_at: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  showList: PropTypes.func.isRequired
 }
 
 export default ContactDetail;
