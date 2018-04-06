@@ -7,7 +7,7 @@ const ContactList = ({ contacts, addContact }) => {
     <div className="container">
       <div className="mb-3" >
         <button className="btn btn-primary" onClick={()=>addContact()} >
-          <i class="fas fa-plus"></i>
+          <i className="fas fa-plus"></i>
         </button>
       </div>
 

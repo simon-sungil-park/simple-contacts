@@ -1,10 +1,15 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import axios from 'axios';
 
 const FETCH_CONTACTS = 'simple-contacts/FETCH_CONTACTS';
 const FETCH_CONTACTS_PENDING = 'simple-contacts/FETCH_CONTACTS_PENDING';
 const FETCH_CONTACTS_FULFILLED = 'simple-contacts/FETCH_CONTACTS_FULFILLED';
 const FETCH_CONTACTS_REJECTED = 'simple-contacts/FETCH_CONTACTS_REJECTED';
+
+const ADD_CONTACT = 'simple-contacts/ADD_CONTACT';
+const ADD_CONTACT_PENDING = 'simple-contacts/ADD_CONTACT_PENDING';
+const ADD_CONTACT_FULFILLED = 'simple-contacts/ADD_CONTACT_FULFILLED';
+const ADD_CONTACT_REJECTED = 'simple-contacts/ADD_CONTACT_REJECTED';
 
 const DELETE_CONTACT = 'simple-contacts/DELETE_CONTACT';
 const DELETE_CONTACT_PENDING = 'simple-contacts/DELETE_CONTACT_PENDING';
@@ -16,6 +21,11 @@ export const fetchContacts = () => ({
   payload: axios.get('/api/contact')
 })
 
+export const addContact = (contact) => ({
+  type: ADD_CONTACT,
+  payload: axios.post('/api/contact/', contact)
+})
+
 export const deleteContact = (contactId) => ({
   type: DELETE_CONTACT,
   payload: axios.delete('/api/contact/' + contactId)
@@ -23,6 +33,7 @@ export const deleteContact = (contactId) => ({
 
 const initialState = {
   pendingFetch: false,
+  pendingAdd: false,
   pendingDelete: false,
   error: false,
   data: []
@@ -48,6 +59,27 @@ export default handleActions(
       {
         ...state,
         pendingFetch: false,
+        error: true
+      }
+    ),    
+    [ADD_CONTACT_PENDING]: (state, action) => (
+      {
+        ...state,
+        pendingAdd: true,
+        error: false
+      }
+    ),
+    [ADD_CONTACT_FULFILLED]: (state, action) => (
+      {
+        ...state,
+        pendingFetch: false,
+        data: [...state.data, action.payload.data.contact]
+      }
+    ),
+    [ADD_CONTACT_REJECTED]: (state, action) => (
+      {
+        ...state,
+        pendingAdd: false,
         error: true
       }
     ),    

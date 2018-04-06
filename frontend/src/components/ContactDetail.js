@@ -11,10 +11,10 @@ const ContactDetail = ({ contact, showList, deleteContact }) => {
         </div>
         <div>
           <button className="btn btn-info mr-2">
-            <i class="fas fa-edit"></i>
+            <i className="fas fa-edit"></i>
           </button>
           <button className="btn btn-danger" onClick={()=>deleteContact(contact.id)}>
-            <i class="fas fa-minus"></i>
+            <i className="fas fa-minus"></i>
           </button>
         </div>
       </div>
