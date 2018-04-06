@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ContactDetail.css'
+import './ContactDetail.css';
+import * as moment from 'moment';
 
 const ContactDetail = ({ contact, showList, editContact, deleteContact }) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="mr-5" >
-          <h2 className="name">{`${contact.firstname} ${contact.lastname}`}</h2>
-        </div>
-        <div>
-          <button className="btn btn-info mr-2" onClick={()=>editContact(contact.id)}>
-            <i className="fas fa-edit"></i>
-          </button>
-          <button className="btn btn-danger" onClick={()=>deleteContact(contact.id)}>
-            <i className="fas fa-minus"></i>
-          </button>
+        <div className="col">
+          <h3 className="name my-1">{`${contact.firstname} ${contact.lastname}`}</h3>
+          <p className="updated">{'Updated ' + moment(contact.updated_at).fromNow()}</p>
         </div>
       </div>
 
@@ -37,9 +31,19 @@ const ContactDetail = ({ contact, showList, editContact, deleteContact }) => {
         </div>
       </div>
 
-      <button className="btn btn-secondary mt-5" onClick={()=>showList()} >
-        Back
-      </button>
+      <div className="mt-5">
+        <button className="btn btn-info mr-2" onClick={()=>editContact(contact.id)}>
+          <i className="fas fa-edit"></i> Edit
+        </button>
+        <button className="btn btn-danger mr-2" onClick={()=>deleteContact(contact.id)}>
+          <i className="fas fa-trash"></i> Delete
+        </button>
+      </div>
+      <div className="mt-4">
+        <button className="btn btn-secondary mr-2" onClick={()=>showList()} >
+        <i className="fas fa-chevron-left"></i> Back to List
+        </button>
+      </div>
 
     </div>
   )

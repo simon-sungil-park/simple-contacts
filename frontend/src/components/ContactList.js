@@ -7,7 +7,7 @@ import ContactListItemContainer from '../containers/ContactListItemContainer';
 const ContactList = ({ contacts, addContact }) => {
   return (
     <div className="container">
-      <div className="row mb-5">
+      <div className="row mb-4">
         <div className="col-md-2 mb-3" >
           <button className="btn btn-outline-secondary w-100" onClick={()=>addContact()} >
             <i className="fas fa-plus"></i> New

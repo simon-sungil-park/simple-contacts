@@ -22,8 +22,8 @@ class ContactEditContatiner extends Component {
     }
   }
 
-  showList = () => {
-    this.props.history.push('/');
+  showDetail = () => {
+    this.props.history.goBack();
   }
 
   updateContact = (contact) => {
@@ -52,7 +52,7 @@ class ContactEditContatiner extends Component {
     return <ContactForm 
               isNew={false}
               contact={contact}
-              cancelEdit={this.showList}
+              cancelEdit={this.showDetail}
               saveContact={this.updateContact}
            />
   }

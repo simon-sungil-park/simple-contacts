@@ -8,9 +8,10 @@
 }
 
 .item-label {
-  color: #464746;
+  color: #858585;
 }
 
-.item-content {
-  font-weight: bold;
+.updated {
+  color: #aaa;
+  margin-bottom: 2em;
 }
