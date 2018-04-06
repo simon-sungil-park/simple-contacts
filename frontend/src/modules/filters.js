@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 
 const SET_SEARCHFILTER = 'simple-contacts/SET_SEARCHFILTER';
 
-export const addItem = createAction(SET_SEARCHFILTER);
+export const setSearchFilter = createAction(SET_SEARCHFILTER);
 
 const initialState = {
   searchFilter: ''

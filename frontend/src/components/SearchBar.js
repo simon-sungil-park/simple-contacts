@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-
-const style = {
-  backgroundColor: '#218bb1',
-  marginBottom: '3em'
-}
-
+import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
+
+  handleChange = (evt) => {
+    this.props.setSearchFilter(evt.target.value);
+  }
 
   render() {
     return (
@@ -16,10 +15,17 @@ class SearchBar extends Component {
             <i className="fas fa-search"></i>
           </span>
         </div>
-        <input type="text" className="form-control" placeholder="Search..." />
+        <input type="text" 
+               onChange={this.handleChange}
+               className="form-control" placeholder="Search..." 
+        />
       </div>
     )
   }
+}
+
+SearchBar.propTypes = {
+  setSearchFilter: PropTypes.func.isRequired
 }
 
 export default SearchBar;
