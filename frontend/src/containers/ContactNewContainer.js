@@ -41,6 +41,7 @@ class ContactNewContatiner extends Component {
     }
 
     return <ContactForm 
+              isNew={true}
               cancelEdit={this.showList}
               saveContact={this.addContact}
            />

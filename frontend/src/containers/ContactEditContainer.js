@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 
 const mapStateToProps = (state) => ({
-  pendingAdd: state.contacts.pendingAdd
+  contacts: state.contacts.data,
+  pendingUpdate: state.contacts.pendingUpdate
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addContact: (contact) => dispatch(contactsActions.addContact(contact))
+  updateContact: (contact) => dispatch(contactsActions.updateContact(contact))
 });
 
 class ContactEditContatiner extends Component {
@@ -25,24 +26,34 @@ class ContactEditContatiner extends Component {
     this.props.history.push('/');
   }
 
-  addContact = (contact) => {
+  updateContact = (contact) => {
     this.setState({
       isWaiting: true
     })
-    this.props.addContact(contact);
-
+    this.props.updateContact(contact);
   }
 
   render() {
-    if (this.state.isWaiting && !this.pendingAdd) {
+    const contactId = this.props.match.params.contactId;
+    const contact = this.props.contacts.find(contact => String(contact.id) === contactId);
+
+    if (!contact) {
+      return (
+        <Redirect to="/" />
+      )
+    }
+
+    if (this.state.isWaiting && !this.pendingUpdate) {
       return (
         <Redirect to="/" />
       )
     }
 
     return <ContactForm 
+              isNew={false}
+              contact={contact}
               cancelEdit={this.showList}
-              saveContact={this.addContact}
+              saveContact={this.updateContact}
            />
   }
 }

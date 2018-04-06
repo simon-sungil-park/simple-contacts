@@ -11,6 +11,11 @@ const ADD_CONTACT_PENDING = 'simple-contacts/ADD_CONTACT_PENDING';
 const ADD_CONTACT_FULFILLED = 'simple-contacts/ADD_CONTACT_FULFILLED';
 const ADD_CONTACT_REJECTED = 'simple-contacts/ADD_CONTACT_REJECTED';
 
+const UPDATE_CONTACT = 'simple-contacts/UPDATE_CONTACT';
+const UPDATE_CONTACT_PENDING = 'simple-contacts/UPDATE_CONTACT_PENDING';
+const UPDATE_CONTACT_FULFILLED = 'simple-contacts/UPDATE_CONTACT_FULFILLED';
+const UPDATE_CONTACT_REJECTED = 'simple-contacts/UPDATE_CONTACT_REJECTED';
+
 const DELETE_CONTACT = 'simple-contacts/DELETE_CONTACT';
 const DELETE_CONTACT_PENDING = 'simple-contacts/DELETE_CONTACT_PENDING';
 const DELETE_CONTACT_FULFILLED = 'simple-contacts/DELETE_CONTACT_FULFILLED';
@@ -26,6 +31,11 @@ export const addContact = (contact) => ({
   payload: axios.post('/api/contact/', contact)
 })
 
+export const updateContact = (contact) => ({
+  type: UPDATE_CONTACT,
+  payload: axios.put('/api/contact/' + contact.id, contact)
+})
+
 export const deleteContact = (contactId) => ({
   type: DELETE_CONTACT,
   payload: axios.delete('/api/contact/' + contactId)
@@ -34,6 +44,7 @@ export const deleteContact = (contactId) => ({
 const initialState = {
   pendingFetch: false,
   pendingAdd: false,
+  pendingUpdate: false,
   pendingDelete: false,
   error: false,
   data: []
@@ -83,6 +94,31 @@ export default handleActions(
         error: true
       }
     ),    
+    [UPDATE_CONTACT_PENDING]: (state, action) => (
+      {
+        ...state,
+        pendingUpdate: true,
+        error: false
+      }
+    ),
+    [UPDATE_CONTACT_FULFILLED]: (state, action) => {
+      const filteredContacts = 
+            state.data.filter(contact => 
+              contact.id !== action.payload.data.contact.id);
+
+      return ({
+        ...state,
+        pendingDelete: false,
+        data: [...filteredContacts, action.payload.data.contact]
+      })
+    },
+    [UPDATE_CONTACT_REJECTED]: (state, action) => (
+      {
+        ...state,
+        pendingUpdate: false,
+        error: true
+      }
+    ),    
     [DELETE_CONTACT_PENDING]: (state, action) => (
       {
         ...state,
@@ -92,7 +128,8 @@ export default handleActions(
     ),
     [DELETE_CONTACT_FULFILLED]: (state, action) => {
       const filteredContacts = 
-            state.data.filter(contact => contact.id !== action.payload.data.deletedId);
+            state.data.filter(contact => 
+              contact.id !== action.payload.data.deletedId);
 
       return ({
         ...state,
