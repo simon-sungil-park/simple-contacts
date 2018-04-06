@@ -77,7 +77,7 @@ exports.removeContact = (contactId) => {
     Contacts.forge({id: contactId})
       .destroy()
       .then(result => {
-        resolve(true);
+        resolve(contactId);
       })
       .catch(error => {
         reject(error)

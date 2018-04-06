@@ -83,7 +83,8 @@ router.delete('/:contactId', (req, res) => {
     .then(result => {
       res.json(
         {
-          isOk: true
+          isOk: true,
+          deletedId: Number(result)
         }
       );
     })
