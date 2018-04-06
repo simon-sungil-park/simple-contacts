@@ -1,0 +1,16 @@
+.name {
+  color: #464746;
+  margin-bottom: 1em;
+}
+
+.item-label, .item-content {
+  font-size: 1.2em;
+}
+
+.item-label {
+  color: #464746;
+}
+
+.item-content {
+  font-weight: bold;
+}
