@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import SearchBar from '../components/SearchBar';
 import { connect } from 'react-redux';
 import * as filtersActions from '../modules/filters';

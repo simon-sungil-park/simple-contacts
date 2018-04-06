@@ -8,7 +8,7 @@ export const setSortOrder = createAction(SET_SORTORDER);
 
 const initialState = {
   searchFilter: '',
-  sortOrder: 'first-name-a-z'
+  sortOrder: 'firstname-a-z'
 };
 
 export default handleActions({

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBarContainer from '../containers/SearchBarContainer';
-import OrderBar from './OrderBar';
+import OrderBarContainer from '../containers/OrderBarContainer';
 import ContactListItemContainer from '../containers/ContactListItemContainer';
 
 const ContactList = ({ contacts, addContact }) => {
@@ -9,7 +9,7 @@ const ContactList = ({ contacts, addContact }) => {
     <div className="container">
       <div className="row mb-5">
         <div className="col" >
-          <button className="btn btn-outline-primary " onClick={()=>addContact()} >
+          <button className="btn btn-outline-secondary" onClick={()=>addContact()} >
             <i className="fas fa-plus"></i> New
           </button>
         </div>
@@ -17,7 +17,7 @@ const ContactList = ({ contacts, addContact }) => {
           <SearchBarContainer />
         </div>
         <div className="col">
-          <OrderBar />
+          <OrderBarContainer />
         </div>
       </div>
 
