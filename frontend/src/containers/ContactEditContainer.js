@@ -33,17 +33,17 @@ class ContactEditContatiner extends Component {
     this.props.updateContact(contact);
   }
 
+  componentWillUpdate() {
+    if (this.state.isWaiting && !this.pendingUpdate) {
+      this.props.history.goBack();
+    }
+  }
+
   render() {
     const contactId = this.props.match.params.contactId;
     const contact = this.props.contacts.find(contact => String(contact.id) === contactId);
 
     if (!contact) {
-      return (
-        <Redirect to="/" />
-      )
-    }
-
-    if (this.state.isWaiting && !this.pendingUpdate) {
       return (
         <Redirect to="/" />
       )
