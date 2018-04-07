@@ -37,7 +37,16 @@ class ContactDetail extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h3 className="name my-1">{`${contact.firstname} ${contact.lastname}`}</h3>
+            <h3 className="name m-0">{`${contact.firstname} ${contact.lastname}`}</h3>
+            <p className="m-0">
+              {
+                contact.tags ? 
+                  contact.tags.split(',').map((tag, i)=>(
+                    <span key={i} className="badge badge-pill badge-secondary mr-1">{tag}</span>
+                  )) : 
+                  ''
+              }
+            </p>
             <p className="updated">{'Updated ' + moment(contact.updated_at).fromNow()}</p>
           </div>
         </div>
@@ -98,7 +107,8 @@ ContactDetail.propTypes = {
     phone: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired
+    updated_at: PropTypes.string.isRequired,
+    tags: PropTypes.string
   }).isRequired,
   showList: PropTypes.func.isRequired,
   editContact: PropTypes.func.isRequired,

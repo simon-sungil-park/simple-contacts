@@ -60,9 +60,3 @@ TagInput.propTypes = {
 }
 
 export default TagInput;
-
-
-//Searches for any matching option within the set of options. 
-//This function prevents duplicate options from being created. 
-//By default this is a basic, case-sensitive comparison of label and value. 
-//Expected signature: ({ option: Object, options: Array, labelKey: string, valueKey: string }): boolean

@@ -41,7 +41,8 @@ ContactList.propTypes = {
       phone: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
       created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired
+      updated_at: PropTypes.string.isRequired,
+      tags: PropTypes.string
     }).isRequired
   ).isRequired,
   addContact: PropTypes.func.isRequired

@@ -15,3 +15,8 @@
   font-weight: bold;
   margin-right: 0.5em;
 }
+
+.badge-empty {
+  color: transparent;
+  background-color: transparent;
+}
