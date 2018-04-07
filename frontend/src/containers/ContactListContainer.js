@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     searchFilter === '' ? 
       contacts :
       contacts.filter(contact => (
-        `${contact.firstname} ${contact.lastname}`
+        `${contact.firstname} ${contact.lastname} ${contact.tags}`
         .toLowerCase()
         .includes(searchFilter.toLowerCase())
       ));

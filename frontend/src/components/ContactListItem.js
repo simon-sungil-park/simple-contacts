@@ -9,15 +9,15 @@ const ContactListItem = ({ contact, showDetail }) => {
         <div className="card-body">
           <span className="firstname">{contact.firstname}</span>
           <span className="lastname">{contact.lastname}</span>
-          <p className="m-0">
-              {
-                contact.tags ? 
-                  contact.tags.split(',').map((tag, i)=>(
-                    <span key={i} className="badge badge-pill badge-secondary mr-1">{tag}</span>
-                  )) : 
-                  <span className="badge badge-empty">.</span>
-              }
-            </p>
+          <div className="d-flex justify-content-end">
+            {
+              contact.tags ? 
+                contact.tags.split(',').map((tag, i)=>(
+                  <span key={i} className="badge badge-pill badge-secondary mr-1">{tag}</span>
+                )) : 
+                <span className="badge badge-empty">.</span>
+            }
+          </div>
         </div>
       </div>
     </div>

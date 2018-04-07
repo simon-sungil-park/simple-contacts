@@ -17,7 +17,7 @@ class SearchBar extends Component {
         </div>
         <input type="text" 
                onChange={this.handleChange}
-               className="form-control" placeholder="Search..." 
+               className="form-control" placeholder="name | tag" 
         />
       </div>
     )

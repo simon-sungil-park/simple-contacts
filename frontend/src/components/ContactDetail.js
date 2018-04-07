@@ -85,10 +85,10 @@ class ContactDetail extends Component {
 
         <div>
           <Modal isOpen={this.state.isOpenConfirm} toggle={this.closeConfirm} >
-            <div class="modal-body">
+            <div className="modal-body">
               Are you sure?
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button className="btn btn-primary mr-2" onClick={this.confirmDelete}>Yes</button>
               <button className="btn btn-secondary" onClick={this.closeConfirm}>No</button>
             </div>
