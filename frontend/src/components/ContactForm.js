@@ -8,7 +8,7 @@ class ContactForm extends Component {
 
     this.state = {
       selectedTags: props.isNew ? '' : props.contact.tags,
-      optionArray: props.tagList
+      optionArray: props.tagList.sort()
     };
   }  
 

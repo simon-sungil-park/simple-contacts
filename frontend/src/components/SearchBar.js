@@ -7,6 +7,10 @@ class SearchBar extends Component {
     this.props.setSearchFilter(evt.target.value);
   }
 
+  handleClear = () => {
+    this.props.setSearchFilter('');
+  }
+
   render() {
     return (
       <div className="input-group">
@@ -16,15 +20,22 @@ class SearchBar extends Component {
           </span>
         </div>
         <input type="text" 
+               value={this.props.searchFilter}
                onChange={this.handleChange}
                className="form-control" placeholder="name | tag" 
         />
+        <div className="input-group-append" onClick={this.handleClear}>
+          <button className="btn btn-outline-secondary">
+            <i className="fas fa-times"></i>
+          </button>
+        </div>        
       </div>
     )
   }
 }
 
 SearchBar.propTypes = {
+  searchFilter: PropTypes.string.isRequired,
   setSearchFilter: PropTypes.func.isRequired
 }
 

@@ -35,6 +35,12 @@ class ContactDetail extends Component {
 
     return (
       <div className="container">
+        <div className="mb-4">
+          <button className="btn btn-secondary mr-2" onClick={()=>showList()} >
+          <i className="fas fa-chevron-left"></i> Back to List
+          </button>
+        </div>
+
         <div className="row">
           <div className="col">
             <h3 className="name m-0">{`${contact.firstname} ${contact.lastname}`}</h3>
@@ -75,11 +81,6 @@ class ContactDetail extends Component {
           </button>
           <button className="btn btn-danger mr-2" onClick={this.openConfirm}>
             <i className="fas fa-trash"></i> Delete
-          </button>
-        </div>
-        <div className="mt-4">
-          <button className="btn btn-secondary mr-2" onClick={()=>showList()} >
-          <i className="fas fa-chevron-left"></i> Back to List
           </button>
         </div>
 
