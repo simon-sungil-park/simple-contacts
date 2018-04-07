@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TagInput from './TagInput'
 import PropTypes from 'prop-types';
+import ImageLoader from './ImageLoader';
 
 class ContactForm extends Component {
   constructor(props) {
@@ -98,6 +99,13 @@ class ContactForm extends Component {
                         defaultOptions={this.state.optionArray} 
                         updateTags={this.updateTags}
               />
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label">Photo</label>
+            <div className="col-sm-10">
+              <ImageLoader />
             </div>
           </div>
 

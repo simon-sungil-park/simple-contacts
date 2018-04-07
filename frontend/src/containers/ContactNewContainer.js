@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ContactForm from '../components/ContactForm';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 
