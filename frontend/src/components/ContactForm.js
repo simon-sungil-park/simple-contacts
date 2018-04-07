@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TagInput from './TagInput'
 import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
@@ -71,6 +72,13 @@ class ContactForm extends Component {
             </div>
           </div>
   
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label">Tags</label>
+            <div className="col-sm-10">
+              <TagInput />
+            </div>
+          </div>
+
           <div className="form-group row">
             <div className="col-sm-2"></div>
             <div className="col-sm-10">
