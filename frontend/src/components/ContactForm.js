@@ -3,12 +3,12 @@ import TagInput from './TagInput'
 import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      selectedTags: '',
-      optionArray: ['Work', 'Home']
+      selectedTags: props.isNew ? '' : props.contact.tags,
+      optionArray: props.tagList
     };
   }  
 
@@ -134,7 +134,8 @@ ContactForm.propTypes = {
     tags: PropTypes.string
   }),
   cancelEdit: PropTypes.func.isRequired,
-  saveContact: PropTypes.func.isRequired
+  saveContact: PropTypes.func.isRequired,
+  tagList: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default ContactForm;

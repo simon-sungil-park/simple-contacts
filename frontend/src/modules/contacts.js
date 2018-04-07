@@ -47,7 +47,8 @@ const initialState = {
   pendingUpdate: false,
   pendingDelete: false,
   error: false,
-  data: []
+  data: [],
+  tagList: []
 };
 
 export default handleActions(
@@ -63,7 +64,10 @@ export default handleActions(
       {
         ...state,
         pendingFetch: false,
-        data: action.payload.data.contacts
+        data: action.payload.data.contacts,
+        tagList: action.payload.data.contacts
+                    .map(contact => contact.tags ? contact.tags.split(',') : [])
+                    .reduce((acc, cur)=>([...new Set([...acc, ...cur])]), [])
       }
     ),
     [FETCH_CONTACTS_REJECTED]: (state, action) => (
@@ -84,7 +88,17 @@ export default handleActions(
       {
         ...state,
         pendingFetch: false,
-        data: [...state.data, action.payload.data.contact]
+        data: [...state.data, action.payload.data.contact],
+        tagList: (
+          action.payload.data.contact.tags ? 
+            ( action.payload.data.contact.tags
+                .split(',')
+                .reduce(
+                  (acc, cur)=>([...new Set([...acc, cur])]), 
+                  state.tagList)
+            ) : 
+            state.tagList
+        )
       }
     ),
     [ADD_CONTACT_REJECTED]: (state, action) => (
@@ -102,14 +116,25 @@ export default handleActions(
       }
     ),
     [UPDATE_CONTACT_FULFILLED]: (state, action) => {
+      const { contact } = action.payload.data;
+
       const filteredContacts = 
-            state.data.filter(contact => 
-              contact.id !== action.payload.data.contact.id);
+            state.data.filter(con => con.id !== contact.id);
 
       return ({
         ...state,
         pendingDelete: false,
-        data: [...filteredContacts, action.payload.data.contact]
+        data: [...filteredContacts, contact],
+        tagList: (
+          contact.tags ? 
+            ( contact.tags
+                .split(',')
+                .reduce(
+                  (acc, cur)=>([...new Set([...acc, cur])]), 
+                  state.tagList)
+            ) : 
+            state.tagList
+        )
       })
     },
     [UPDATE_CONTACT_REJECTED]: (state, action) => (

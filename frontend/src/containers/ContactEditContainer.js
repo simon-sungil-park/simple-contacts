@@ -6,7 +6,8 @@ import * as contactsActions from '../modules/contacts';
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts.data,
-  pendingUpdate: state.contacts.pendingUpdate
+  pendingUpdate: state.contacts.pendingUpdate,
+  tagList: state.contacts.tagList
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -54,6 +55,7 @@ class ContactEditContatiner extends Component {
               contact={contact}
               cancelEdit={this.showDetail}
               saveContact={this.updateContact}
+              tagList={this.props.tagList}
            />
   }
 }

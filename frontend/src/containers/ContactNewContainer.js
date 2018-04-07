@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 
 const mapStateToProps = (state) => ({
-  pendingAdd: state.contacts.pendingAdd
+  pendingAdd: state.contacts.pendingAdd,
+  tagList: state.contacts.tagList
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -33,17 +34,18 @@ class ContactNewContatiner extends Component {
 
   }
 
-  render() {
+  componentWillUpdate() {
     if (this.state.isWaiting && !this.pendingAdd) {
-      return (
-        <Redirect to="/" />
-      )
+      this.props.history.push('/');
     }
+  }
 
+  render() {
     return <ContactForm 
               isNew={true}
               cancelEdit={this.showList}
               saveContact={this.addContact}
+              tagList={this.props.tagList}
            />
   }
 }
