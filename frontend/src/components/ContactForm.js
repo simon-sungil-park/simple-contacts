@@ -3,6 +3,14 @@ import TagInput from './TagInput'
 import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      selectedTags: '',
+      optionArray: ['Work', 'Home']
+    };
+  }  
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -14,7 +22,8 @@ class ContactForm extends Component {
         firstname: evt.target.firstname.value,
         lastname: evt.target.lastname.value,
         phone: evt.target.phone.value,
-        email: evt.target.email.value
+        email: evt.target.email.value,
+        tags: this.state.selectedTags
       }
     }
     else {
@@ -23,14 +32,24 @@ class ContactForm extends Component {
         firstname: evt.target.firstname.value,
         lastname: evt.target.lastname.value,
         phone: evt.target.phone.value,
-        email: evt.target.email.value        
+        email: evt.target.email.value,
+        tags: this.state.selectedTags
       }
     }
 
     this.props.saveContact(contact);
   }
 
+  updateTags = (tags, options) => {
+    this.setState({
+      selectedTags: tags,
+      optionArray: options
+    });
+  }
+
   render() {
+
+    const { contact, isNew, cancelEdit } = this.props;
 
     return (
       <div className="container">
@@ -39,7 +58,7 @@ class ContactForm extends Component {
             <label className="col-sm-2 col-form-label">First Name</label>
             <div className="col-sm-10">
               <input type="text" name="firstname" 
-                     defaultValue={this.props.isNew ? '' : this.props.contact.firstname} 
+                     defaultValue={isNew ? '' : contact.firstname} 
                      className="form-control" placeholder="First Name" required 
               />
             </div>
@@ -49,7 +68,7 @@ class ContactForm extends Component {
             <label className="col-sm-2 col-form-label">Last Name</label>
             <div className="col-sm-10">
               <input type="text" name="lastname" 
-                     defaultValue={this.props.isNew ? '' : this.props.contact.lastname} 
+                     defaultValue={isNew ? '' : contact.lastname} 
                      className="form-control" placeholder="Last Name" required />
             </div>
           </div>
@@ -58,7 +77,7 @@ class ContactForm extends Component {
             <label className="col-sm-2 col-form-label">Phone</label>
             <div className="col-sm-10">
               <input type="tel" name="phone" 
-                     defaultValue={this.props.isNew ? '' : this.props.contact.phone} 
+                     defaultValue={isNew ? '' : contact.phone} 
                      className="form-control" placeholder="Phone" required />
             </div>
           </div>
@@ -67,7 +86,7 @@ class ContactForm extends Component {
             <label className="col-sm-2 col-form-label">Email</label>
             <div className="col-sm-10">
               <input type="email" name="email" 
-                     defaultValue={this.props.isNew ? '' : this.props.contact.email} 
+                     defaultValue={isNew ? '' : contact.email} 
                      className="form-control" placeholder="Email" required />
             </div>
           </div>
@@ -75,7 +94,10 @@ class ContactForm extends Component {
           <div className="form-group row">
             <label className="col-sm-2 col-form-label">Tags</label>
             <div className="col-sm-10">
-              <TagInput />
+              <TagInput defaultTags={isNew ? '' : contact.tags} 
+                        defaultOptions={this.state.optionArray} 
+                        updateTags={this.updateTags}
+              />
             </div>
           </div>
 
@@ -86,7 +108,7 @@ class ContactForm extends Component {
               <button className="btn btn-secondary" 
                       onClick={(e)=>{
                         e.preventDefault();
-                        this.props.cancelEdit();
+                        cancelEdit();
                       }}
               >
                 Cancel
@@ -108,7 +130,8 @@ ContactForm.propTypes = {
     phone: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired
+    updated_at: PropTypes.string.isRequired,
+    tags: PropTypes.string
   }),
   cancelEdit: PropTypes.func.isRequired,
   saveContact: PropTypes.func.isRequired
