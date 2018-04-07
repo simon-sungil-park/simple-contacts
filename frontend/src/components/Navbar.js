@@ -1,16 +1,16 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import './Navbar.css';
 
-const style = {
-  backgroundColor: '#218bb1',
-  marginBottom: '3em'
-}
-
-const Navbar = () => {
+const Navbar = ({ history }) => {
   return (
-    <nav className="navbar navbar-dark" style={style}>
-      <span className="navbar-brand mb-0 h1">Simple Contacts</span>
+    <nav className="navbar navbar-dark navbar-custom">
+      <span className="navbar-brand mb-0 h1"
+            onClick={()=>(history.push('/'))}
+      >
+      Simple Contacts</span>
     </nav>
   )
 }
 
-export default Navbar;
+export default withRouter(Navbar);

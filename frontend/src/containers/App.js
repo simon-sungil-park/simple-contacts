@@ -3,6 +3,7 @@ import { Route, Redirect, withRouter, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import ContactListContainer from './ContactListContainer';
 import ContactDetailContainer from './ContactDetailContainer';
 import ContactNewContainer from './ContactNewContainer'
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/edit/:contactId" render={()=><ContactEditContainer />} />
           <Route render={()=><Redirect to="/" />} />
         </Switch>
+        <Footer />
       </div>
     );
   }
