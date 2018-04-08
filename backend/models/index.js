@@ -6,6 +6,10 @@ const Contacts = bookshelf.Model.extend({
   tableName: 'contacts'
 });
 
+const Images = bookshelf.Model.extend({
+  tableName: 'images'
+});
+
 exports.getContacts = () => {
   return new Promise( (resolve, reject) => {
     Contacts.fetchAll()
@@ -83,4 +87,38 @@ exports.removeContact = (contactId) => {
         reject(error)
       });   
   })
+}
+
+exports.addImage = (imageData) => {
+  return new Promise( (resolve, reject) => {
+    Images.forge(
+      {
+        data: imageData
+      }
+    )
+    .save()
+    .then(savedContact => {
+      resolve(savedContact.id);
+    })
+    .catch(error => {
+      reject(error)
+    });   
+  })
+}
+
+exports.getImage = (imageId) => {
+  return new Promise( (resolve, reject) => {
+    Images.forge({id: imageId})
+    .fetch()
+    .then(image => {
+      resolve(
+        { 
+          ...image.attributes
+        }
+      );
+    })
+    .catch(error => {
+      reject(error)
+    });   
+  })  
 }
