@@ -71,11 +71,46 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:contactId', (req, res) => {
-
   const contact = req.body;
   contact.id = req.params.contactId;
 
-  models.updateContact(contact)
+  let imagedata = undefined;
+  
+  if (contact.imagedata) {
+    imagedata = contact.imagedata;
+    delete contact.imagedata;
+  }
+  
+  new Promise((resolve, reject) => {
+    if (contact.image_id && imagedata) {
+      models.removeImage(contact.image_id)
+        .then(deletedImage_id => {
+          resolve(deletedImage_id)
+        })
+    }
+    else {
+      resolve(null);
+    }
+  })
+    .then(deletedImage_id => {
+      return new Promise((resolve, reject) => {
+        if (imagedata) {
+          models.addImage(imagedata)
+            .then(image_id => {
+              resolve(image_id)
+            })
+        }
+        else {
+          resolve(null);
+        }
+      })
+    })
+    .then(image_id => {
+      if (image_id) {
+        contact.image_id = image_id;
+      }
+      return models.updateContact(contact)
+    })
     .then(savedContact => {
       res.json(
         {

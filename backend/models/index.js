@@ -50,7 +50,6 @@ exports.addContact = (contact) => {
 
 exports.updateContact = (contact) => {
 
-  const contactId = contact.id;
   const modifiedContact = {...contact};
   
   delete modifiedContact.id;
@@ -97,12 +96,43 @@ exports.addImage = (imageData) => {
       }
     )
     .save()
-    .then(savedContact => {
-      resolve(savedContact.id);
+    .then(savedImage => {
+      resolve(savedImage.id);
     })
     .catch(error => {
       reject(error)
     });   
+  })
+}
+
+exports.updateImage = (image) => {
+  return new Promise( (resolve, reject) => {
+    Images.forge({id: image.id})
+      .save(
+        {
+          data: image.data,
+          updated_at: new Date()
+        }
+      )
+      .then(savedImage => {
+        resolve(savedImage.id);
+      })
+      .catch(error => {
+        reject(error)
+      });    
+  })
+}
+
+exports.removeImage = (imageId) => {
+  return new Promise( (resolve, reject) => {
+    Images.forge({id: imageId})
+      .destroy()
+      .then(result => {
+        resolve(imageId);
+      })
+      .catch(error => {
+        reject(error)
+      });   
   })
 }
 
