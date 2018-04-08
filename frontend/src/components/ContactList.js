@@ -4,7 +4,7 @@ import SearchBarContainer from '../containers/SearchBarContainer';
 import OrderBarContainer from '../containers/OrderBarContainer';
 import ContactListItemContainer from '../containers/ContactListItemContainer';
 
-const ContactList = ({ contacts, addContact }) => {
+const ContactList = ({ contacts, addContact, searchFilter }) => {
   return (
     <div className="container">
       <div className="row mb-4">
@@ -20,6 +20,16 @@ const ContactList = ({ contacts, addContact }) => {
           <OrderBarContainer />
         </div>
       </div>
+
+      {
+        searchFilter ? 
+          (
+            <div className="alert alert-secondary mb-3">
+              {`${contacts.length} contact${contacts.length===1?'':'s'} found`}
+            </div>
+          ) :
+          ""
+      }
 
       <div className="row">
         {
@@ -42,7 +52,8 @@ ContactList.propTypes = {
       email: PropTypes.string.isRequired,
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired,
-      tags: PropTypes.string
+      tags: PropTypes.string,
+      searchFilter: PropTypes.string
     }).isRequired
   ).isRequired,
   addContact: PropTypes.func.isRequired

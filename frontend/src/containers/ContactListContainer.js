@@ -83,6 +83,7 @@ class ContactListContatiner extends Component {
       <ContactList 
         contacts={this.props.contacts}
         addContact={this.addContact}
+        searchFilter={this.props.searchFilter}
       />
     )
   }
