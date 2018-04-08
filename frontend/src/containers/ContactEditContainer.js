@@ -6,6 +6,7 @@ import * as contactsActions from '../modules/contacts';
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts.data,
+  pendingFetch: state.contacts.pendingFetch,
   pendingUpdate: state.contacts.pendingUpdate,
   tagList: state.contacts.tagList
 });
@@ -41,6 +42,10 @@ class ContactEditContatiner extends Component {
   }
 
   render() {
+    if (this.props.pendingFetch || this.props.contacts.length === 0) {
+      return <div></div>
+    }
+
     const contactId = this.props.match.params.contactId;
     const contact = this.props.contacts.find(contact => String(contact.id) === contactId);
 
