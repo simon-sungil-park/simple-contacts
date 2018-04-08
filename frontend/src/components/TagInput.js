@@ -37,8 +37,9 @@ class TagInput extends Component {
         options={this.state.options}
         value={this.state.value}
         onChange={this.handleChange}
+        menuContainerStyle={{ zIndex: 5 }}
         promptTextCreator={(label) => `Create tag "${label}"`}
-        placeholder="Tags.."
+        placeholder="Tags..."
         isOptionUnique={ ({option, options, labelKey, valueKey}) => {
           let flag = true;
           options.forEach(select => {

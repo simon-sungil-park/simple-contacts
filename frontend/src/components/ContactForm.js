@@ -39,6 +39,10 @@ class ContactForm extends Component {
       }
     }
 
+    if (this.state.photoData) {
+      contact.imagedata = this.state.photoData
+    }
+
     this.props.saveContact(contact);
   }
 

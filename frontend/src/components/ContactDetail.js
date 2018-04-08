@@ -58,24 +58,38 @@ class ContactDetail extends Component {
         </div>
   
         <div className="row">
-          <div className="col-2 item-label">
-            Phone
-          </div>
-          <div className="col-10 item-content">
-            {contact.phone}
+          <div className="col-sm-2 mb-3">
+            <img className="img-fluid rounded" alt={contact.firstname}
+              src={
+                contact.image_id ? 
+                  `/api/image/${contact.image_id}.jpg` :
+                  '/images/default.jpg'
+              }
+             />
+          </div> 
+
+          <div className="col-sm-10">
+            <div className="row">
+              <div className="col-2 item-label">
+                Phone
+              </div>
+              <div className="col-10 item-content">
+                {contact.phone}
+              </div>
+            </div>
+      
+            <div className="row">
+              <div className="col-2 item-label">
+                Email
+              </div>
+              <div className="col-10 item-content">
+                {contact.email}
+              </div>
+            </div>
           </div>
         </div>
-  
-        <div className="row">
-          <div className="col-2 item-label">
-            Email
-          </div>
-          <div className="col-10 item-content">
-            {contact.email}
-          </div>
-        </div>
-  
-        <div className="mt-5">
+
+        <div className="mt-4">
           <button className="btn btn-info mr-2" onClick={()=>editContact(contact.id)}>
             <i className="fas fa-edit"></i> Edit
           </button>

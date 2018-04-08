@@ -8,19 +8,36 @@ class ImageLoader extends Component {
     super();
 
     this.state = { 
-      image: undefined 
+      image: undefined,
+      isFirstLoad: true
     }   
   }
 
   handleChange = evt => {
-    this.setState({ image: evt.target.files[0] })
+    if (evt.target.files.length > 0) {
+      this.setState({ 
+        image: evt.target.files[0], 
+        isFirstLoad: false
+      });
+    }
   }
      
   handleDrop = dropped => {
-    this.setState({ image: dropped[0] })
+    if (dropped.length > 0) {
+      this.setState({ 
+        image: dropped[0],
+        isFirstLoad: false
+      });
+    }
   }
 
   handleImageChange = () => {
+    if (!this.state.isFirstLoad) {
+      this.updateData();    
+    }
+  }
+
+  updateData = () => {
     const scaledCanvas = this.refs.imageCanvas.getImageScaledToCanvas();
     const scaledImageData = scaledCanvas.toDataURL('image/jpeg', 0.8);
 
@@ -33,7 +50,7 @@ class ImageLoader extends Component {
         <div className="input-group mb-3">
           <div className="custom-file">
             <input type="file" className="custom-file-input" onChange={this.handleChange} />
-            <label className="custom-file-label" >Select photo..</label>
+            <label className="custom-file-label" >Select photo...</label>
           </div>
         </div>
         <div className="pb-4">
@@ -44,6 +61,7 @@ class ImageLoader extends Component {
           >
             <AvatarEditor width={200} height={200} border={0} 
               onImageChange={this.handleImageChange}
+              onLoadSuccess={this.handleImageChange}
               ref="imageCanvas"
               image={this.state.image ? 
                       this.state.image : 
