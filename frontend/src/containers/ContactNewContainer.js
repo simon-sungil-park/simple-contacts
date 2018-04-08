@@ -3,10 +3,12 @@ import ContactForm from '../components/ContactForm';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
+import { toast } from 'react-toastify';
 
 const mapStateToProps = (state) => ({
   pendingFetch: state.contacts.pendingFetch,
   pendingAdd: state.contacts.pendingAdd,
+  error: state.contacts.error,
   tagList: state.contacts.tagList
 });
 
@@ -35,8 +37,14 @@ class ContactNewContatiner extends Component {
 
   }
 
-  componentWillUpdate() {
-    if (this.state.isWaiting && !this.pendingAdd) {
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isWaiting && !nextProps.pendingAdd) {
+      if (!nextProps.error) {
+        toast.info('Create done');
+      }
+      else {
+        toast.error('Create failed');
+      }
       this.props.history.push('/');
     }
   }

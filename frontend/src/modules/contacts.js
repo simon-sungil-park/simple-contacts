@@ -87,7 +87,7 @@ export default handleActions(
     [ADD_CONTACT_FULFILLED]: (state, action) => (
       {
         ...state,
-        pendingFetch: false,
+        pendingAdd: false,
         data: [...state.data, action.payload.data.contact],
         tagList: (
           action.payload.data.contact.tags ? 
@@ -123,7 +123,7 @@ export default handleActions(
 
       return ({
         ...state,
-        pendingDelete: false,
+        pendingUpdate: false,
         data: [...filteredContacts, contact],
         tagList: (
           contact.tags ? 

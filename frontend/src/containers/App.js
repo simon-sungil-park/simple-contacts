@@ -8,6 +8,7 @@ import ContactListContainer from './ContactListContainer';
 import ContactDetailContainer from './ContactDetailContainer';
 import ContactNewContainer from './ContactNewContainer'
 import ContactEditContainer from './ContactEditContainer'
+import { ToastContainer } from 'react-toastify';
 
 const mapDispatchToProps = (dispatch) => ({
   fetchContacts: () => dispatch(contactsActions.fetchContacts())
@@ -31,6 +32,7 @@ class App extends Component {
           <Route render={()=><Redirect to="/" />} />
         </Switch>
         <Footer />
+        <ToastContainer hideProgressBar={true}/>
       </div>
     );
   }

@@ -3,10 +3,13 @@ import ContactDetail from '../components/ContactDetail';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
+import { toast } from 'react-toastify';
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts.data,
-  pendingFetch: state.contacts.pendingFetch
+  pendingFetch: state.contacts.pendingFetch,
+  pendingDelete: state.contacts.pendingDelete,
+  error: state.contacts.error
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -14,7 +17,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class ContactDetailContatiner extends Component {
-
+  constructor() {
+    super();
+    this.state = {
+      isWaiting: false
+    }
+  }
+  
   showList = () => {
     this.props.history.push('/');
   }
@@ -24,7 +33,22 @@ class ContactDetailContatiner extends Component {
   }
 
   deleteContact = (contactId) => {
+    this.setState({
+      isWaiting: true
+    }); 
     this.props.deleteContact(contactId);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isWaiting && !nextProps.pendingDelete) {
+      if (!nextProps.error) {
+        toast.info('Delete done');
+      }
+      else {
+        toast.error('Delete failed');
+      }
+      this.props.history.push('/');
+    }
   }
 
   render() {
