@@ -29,10 +29,29 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-
   const contact = req.body;
-
-  models.addContact(contact)
+  let imagedata = undefined;
+  
+  if (contact.imagedata) {
+    imagedata = contact.imagedata;
+    delete contact.imagedata;
+  }
+  
+  new Promise((resolve, reject) => {
+    if (imagedata) {
+      models.addImage(imagedata)
+        .then(image_id => resolve(image_id))
+    }
+    else {
+      resolve(null);
+    }
+  })
+    .then(image_id => {
+      if (image_id) {
+        contact.image_id = image_id;
+      }
+      return models.addContact(contact)
+    })
     .then(savedContact => {
       res.json(
         {
