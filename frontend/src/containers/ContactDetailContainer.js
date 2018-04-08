@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.data
+  contacts: state.contacts.data,
+  pendingFetch: state.contacts.pendingFetch
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -27,13 +28,15 @@ class ContactDetailContatiner extends Component {
   }
 
   render() {
+    if (this.props.pendingFetch || this.props.contacts.length === 0) {
+      return <div></div>
+    }
+
     const contactId = this.props.match.params.contactId;
     const contact = this.props.contacts.find(contact => String(contact.id) === contactId);
 
     if (!contact) {
-      return (
-        <Redirect to="/" />
-      )
+      return <Redirect to="/" />
     }
 
     return <ContactDetail 

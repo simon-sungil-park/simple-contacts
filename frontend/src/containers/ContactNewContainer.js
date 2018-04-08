@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as contactsActions from '../modules/contacts';
 
 const mapStateToProps = (state) => ({
+  pendingFetch: state.contacts.pendingFetch,
   pendingAdd: state.contacts.pendingAdd,
   tagList: state.contacts.tagList
 });
@@ -41,6 +42,10 @@ class ContactNewContatiner extends Component {
   }
 
   render() {
+    if (this.props.pendingFetch) {
+      return <div></div>
+    }
+
     return <ContactForm 
               isNew={true}
               cancelEdit={this.showList}
