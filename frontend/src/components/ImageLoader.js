@@ -39,7 +39,17 @@ class ImageLoader extends Component {
 
   updateData = () => {
     const scaledCanvas = this.refs.imageCanvas.getImageScaledToCanvas();
-    const scaledImageData = scaledCanvas.toDataURL('image/jpeg', 0.8);
+
+    const whiteCanvas = document.createElement("canvas");
+    whiteCanvas.width = scaledCanvas.width;
+    whiteCanvas.height = scaledCanvas.height;
+
+    const whiteCtx = whiteCanvas.getContext('2d');
+    whiteCtx.fillStyle = "#FFFFFF";
+    whiteCtx.fillRect(0,0,scaledCanvas.width,scaledCanvas.height);
+    whiteCtx.drawImage(scaledCanvas, 0, 0);
+
+    const scaledImageData = whiteCanvas.toDataURL('image/jpeg', 0.8);
 
     this.props.updatePhotoData(scaledImageData);
   }
