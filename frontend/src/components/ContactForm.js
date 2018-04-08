@@ -119,10 +119,10 @@ class ContactForm extends Component {
               <ImageLoader 
                 defaultImage={ 
                   isNew ? 
-                    undefined : 
+                    "/images/default_add.jpg" : 
                     contact.image_id ? 
                       `/api/image/${contact.image_id}.jpg` :
-                      undefined
+                      "/images/default_add.jpg"
                 }
                 updatePhotoData={this.updatePhotoData}
               />

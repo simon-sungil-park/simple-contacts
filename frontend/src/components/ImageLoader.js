@@ -65,9 +65,7 @@ class ImageLoader extends Component {
               ref="imageCanvas"
               image={this.state.image ? 
                       this.state.image : 
-                      this.props.defaultImage ?
-                        this.props.defaultImage :  
-                        "/images/default_add.jpg" 
+                      this.props.defaultImage  
               } 
             />
           </Dropzone>
@@ -79,7 +77,7 @@ class ImageLoader extends Component {
 
 ImageLoader.propTypes = {
   updatePhotoData: PropTypes.func.isRequired,
-  defaultImage: PropTypes.string
+  defaultImage: PropTypes.string.isRequired
 }
 
 export default ImageLoader;
