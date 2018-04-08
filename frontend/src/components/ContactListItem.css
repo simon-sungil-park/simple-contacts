@@ -1,14 +1,6 @@
-.contact {
-  margin-bottom: 1em;
-}
-
 .contact:hover {
   background-color: #f2f8fb;
   cursor: pointer;
-}
-
-.firstname, .lastname {
-  font-size: 1.2em;
 }
 
 .firstname {

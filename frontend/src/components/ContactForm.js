@@ -126,7 +126,6 @@ class ContactForm extends Component {
                 }
                 updatePhotoData={this.updatePhotoData}
               />
-              <img src={this.state.photoData} />
             </div>
           </div>
 
