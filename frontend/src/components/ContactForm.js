@@ -9,7 +9,8 @@ class ContactForm extends Component {
 
     this.state = {
       selectedTags: props.isNew ? '' : props.contact.tags,
-      optionArray: props.tagList.sort()
+      optionArray: props.tagList.sort(),
+      photoData: undefined
     };
   }  
 
@@ -45,6 +46,12 @@ class ContactForm extends Component {
     this.setState({
       selectedTags: tags,
       optionArray: options
+    });
+  }
+
+  updatePhotoData = (data) => {
+    this.setState({
+      photoData: data
     });
   }
 
@@ -105,13 +112,13 @@ class ContactForm extends Component {
           <div className="form-group row">
             <label className="col-sm-2 col-form-label">Photo</label>
             <div className="col-sm-10">
-              <ImageLoader />
+              <ImageLoader updatePhotoData={this.updatePhotoData}
+              />
             </div>
           </div>
 
           <div className="form-group row">
-            <div className="col-sm-2"></div>
-            <div className="col-sm-10">
+            <div className="col">
               <button type="submit" className="btn btn-primary mr-2">Save</button>
               <button className="btn btn-secondary" 
                       onClick={(e)=>{
