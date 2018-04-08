@@ -101,7 +101,7 @@ class ContactDetail extends Component {
         <div>
           <Modal isOpen={this.state.isOpenConfirm} toggle={this.closeConfirm} >
             <div className="modal-body">
-              Are you sure?
+              Are you sure you want to delete this contact?
             </div>
             <div className="modal-footer">
               <button className="btn btn-primary mr-2" onClick={this.confirmDelete}>Yes</button>

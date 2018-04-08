@@ -40,10 +40,10 @@ class ContactEditContatiner extends Component {
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isWaiting && !nextProps.pendingUpdate) {
       if (!nextProps.error) {
-        toast.info('Update done');
+        toast.info('Success! Your contact has been updated.');
       }
       else {
-        toast.error('Update failed');
+        toast.error('Ooops, something went wrong. Try again.');
       }
       this.props.history.push('/');
     }

@@ -42,10 +42,10 @@ class ContactDetailContatiner extends Component {
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isWaiting && !nextProps.pendingDelete) {
       if (!nextProps.error) {
-        toast.info('Delete done');
+        toast.info('Success! Your contact has been deleted.');
       }
       else {
-        toast.error('Delete failed');
+        toast.error('Ooops, something went wrong. Try again.');
       }
       this.props.history.push('/');
     }

@@ -40,10 +40,10 @@ class ContactNewContatiner extends Component {
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isWaiting && !nextProps.pendingAdd) {
       if (!nextProps.error) {
-        toast.info('Create done');
+        toast.info('Success! Your contact has been created.');
       }
       else {
-        toast.error('Create failed');
+        toast.error('Ooops, something went wrong. Try again.');
       }
       this.props.history.push('/');
     }
