@@ -116,8 +116,17 @@ class ContactForm extends Component {
           <div className="form-group row">
             <label className="col-sm-2 col-form-label">Photo</label>
             <div className="col-sm-10">
-              <ImageLoader updatePhotoData={this.updatePhotoData}
+              <ImageLoader 
+                defaultImage={ 
+                  isNew ? 
+                    undefined : 
+                    contact.image_id ? 
+                      `/api/image/${contact.image_id}.jpg` :
+                      undefined
+                }
+                updatePhotoData={this.updatePhotoData}
               />
+              <img src={this.state.photoData} />
             </div>
           </div>
 
