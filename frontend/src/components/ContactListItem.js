@@ -5,7 +5,7 @@ import './ContactListItem.css';
 const ContactListItem = ({ contact, showDetail }) => {
   return (
     <div className="col-md-6 col-lg-4">
-      <div className="card contact mb-4" onClick={()=>showDetail(contact.id)}>
+      <div className="card contact mb-sm-4 mb-2" onClick={()=>showDetail(contact.id)}>
         <div className="row no-gutters h-100">
           <div className="col-3">
             <img className="w-100 rounded" alt={contact.firstname}

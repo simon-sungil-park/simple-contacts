@@ -65,7 +65,9 @@ class ContactForm extends Component {
 
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} 
+              onKeyPress={(e)=>{e.which===13?e.preventDefault():undefined}} 
+        >
           <div className="form-group row">
             <label className="col-sm-2 col-form-label">First Name</label>
             <div className="col-sm-10">
